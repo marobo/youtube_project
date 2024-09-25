@@ -1,0 +1,14 @@
+{% extends 'base_site.html' %}
+
+{% block title %}
+    YouTube Playlist
+{% endblock title %}
+
+{% block content %}
+    <h1>YouTube Playlist</h1>
+    <ul>
+        {% for item in playlist_items %}
+            <li>{{ item.snippet.title }}</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
