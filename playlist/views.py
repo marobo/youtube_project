@@ -37,8 +37,7 @@ def youtube_downloader(request):
                     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                         info_dict = ydl.extract_info(video_url, download=True)
                         video_title = info_dict.get('title', None)
-                        file_name = f"{video_title}"
-                        return render(request, 'playlist/youtube_download.html', {'file_name': file_name})
+                        return render(request, 'playlist/youtube_download.html', {'video_title': video_title})
 
                 except Exception as e:
                     return HttpResponse(f"Error: {e}")
