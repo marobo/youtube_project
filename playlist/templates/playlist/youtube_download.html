@@ -1,0 +1,27 @@
+{% extends 'base_site.html' %}
+
+{% block title %}
+Download YouTube Video
+{% endblock title %}
+
+{% block content %}
+    <h2>YT SAVER</h2>
+    <b><p style="color: coral;">Save your favorite youtube videos for free!!</p></b>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="video_url">Enter YouTube Video URL:</label>
+        <input type="url" name="video_url" id="video_url" required value="{% if video_url %}{{ video_url }}{% endif %}">
+        <button type="submit">Proceed</button>
+        {% if formats %}
+            <select name="selected_format_id">
+            {% for format in formats %}
+                <option value="{{ format.format_id }}" name="selected_format_id" id="selected_format_id">{{ format.format }}</option> 
+            {% endfor %}
+            </select>
+            <button type="submit">Download</button>
+        {% endif %}
+    </form>
+    {% if file_name %}
+    <b><p style="color: rgb(16, 106, 33);">The video "{{ file_name }}" was downloaded successfully!</p></b>
+    {% endif %}
+{% endblock content %}
