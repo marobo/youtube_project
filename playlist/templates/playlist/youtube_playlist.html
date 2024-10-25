@@ -5,11 +5,15 @@
 {% endblock title %}
 
 {% block content %}
-    <h2>YT PLAYLIST</h2>
-    <b><p style="color: coral;">Your favorite playlist will be here!</p></b>
+<div>
+    <a href="{% url 'homepage' %}">
+        YouTube Playlist
+    </a>
+    <p>Your favorite youtube playlist will be here!</p>
     <ul>
         {% for item in playlist_items %}
             <li>{{ item.snippet.title }}</li>
         {% endfor %}
     </ul>
+</div>
 {% endblock content %}

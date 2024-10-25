@@ -1,12 +1,12 @@
 {% extends 'base_site.html' %}
 
 {% block title %}
-This is index title
+Welcome
 {% endblock title %}
 
 {% block content %}
-<h1>Welcome to youtube project</h1>
-<a href="{% url 'youtube_playlist' %}">Youtube Playlist</a> | 
-<a href="{% url 'youtube_downloader' %}">Youtube Downloader</a>
-<p>{{ insert_me }}</p>
+<div>
+    <a href="{% url 'homepage' %}">Welcome to youtube project</a>
+    <p>Save your favorite youtube videos to playlist and download it for free!</p>
+</div>
 {% endblock content %}

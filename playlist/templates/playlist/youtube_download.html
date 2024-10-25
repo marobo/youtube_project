@@ -5,29 +5,33 @@ Download YouTube Video
 {% endblock title %}
 
 {% block content %}
-<h2>YT SAVER</h2>
-<b><p style="color: coral;">Save your favorite youtube videos for free!!</p></b>
-<form method="POST">
-    {% csrf_token %}
-    <label for="video_url">Enter YouTube Video URL:</label>
-    <input type="url" name="video_url" id="video_url" required value="{% if video_url %}{{ video_url }}{% endif %}">
-    <button type="submit">Proceed</button>
-    {% if formats %}
-        <select name="selected_format_id">
-        {% for format in formats %}
-            {% if format.filesize %}
-                <option value="{{ format.format_id }}" name="selected_format_id" id="selected_format_id">{{ format.resolution }} - {{ format.ext }} - Size: {{ format.filesize|filesizeformat }}</option>
-            {% endif %}
-        {% endfor %}
-        </select>
-        <button type="submit">Download</button>
+<div>
+    <a href="{% url 'homepage' %}">
+        YT Save
+    </a>
+    <p>Save your favorite youtube videos for free!!</p>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="video_url">Enter YouTube Video URL:</label>
+        <input type="url" name="video_url" id="video_url" required value="{% if video_url %}{{ video_url }}{% endif %}">
+        <button type="submit">Proceed</button>
+        {% if formats %}
+            <select name="selected_format_id">
+            {% for format in formats %}
+                {% if format.filesize %}
+                    <option value="{{ format.format_id }}" name="selected_format_id" id="selected_format_id">{{ format.resolution }} - {{ format.ext }} - Size: {{ format.filesize|filesizeformat }}</option>
+                {% endif %}
+            {% endfor %}
+            </select>
+            <button type="submit">Download</button>
+        {% endif %}
+    </form>
+    {% if video_title %}
+        <p>The video <b>"{{ video_title }}"</b> was downloaded successfully!</p>
     {% endif %}
-</form>
-{% if video_title %}
-    <p style="color: rgb(16, 106, 33);">The video <b>"{{ video_title }}"</b> was downloaded successfully!</p>
-{% endif %}
 
-<div id="video-preview"></div>
+    <div id="video-preview"></div>
+</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
